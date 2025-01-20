@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,17 @@
 				<div class="card point-card">
 					<div class="card-body">
 						<p class="fs-4 text-center">Admin Login</p>
-						<form action="doctorLogin" method="post">
+						<!-- Display Success or Error Message using JSTL -->
+						<c:if test="${not empty sucMsg}">
+							<p class="text-success text-center">${sucMsg}</p>
+							<c:remove var="sucMsg" scope="session" />
+						</c:if>
+
+						<c:if test="${not empty errMsg}">
+							<p class="text-danger text-center">${errMsg}</p>
+							<c:remove var="errMsg" scope="session" />
+						</c:if>
+						<form action="adminLogin" method="post">
 							<div class="mb-3">
 								<label class="form-label">Email address</label> <input required
 									name="email" type="email" class="form-control">
