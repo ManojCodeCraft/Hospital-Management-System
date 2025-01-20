@@ -8,8 +8,19 @@
 	<name>Hospital_Management_System Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
-	<!-- Dependencies -->
 	<dependencies>
+		<!-- JSTL for using <c:if> and other JSTL tags -->
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.taglibs</groupId>
+			<artifactId>taglibs-standard-impl</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+
 		<!-- JUnit for Testing -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -33,12 +44,15 @@
 			<version>2.3.3</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- MySQL Connector -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.26</version> <!-- Check for the latest version -->
 		</dependency>
 	</dependencies>
+
 
 	<!-- Build Configuration -->
 	<build>
@@ -54,6 +68,7 @@
 				</configuration>
 			</plugin>
 
+			<!-- -->
 			<!-- Maven WAR Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

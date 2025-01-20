@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Signup Page</title>
 <%@include file="component/allcss.jsp"%>
 <style>
 .point-card {
@@ -14,13 +16,27 @@
 </head>
 <body>
 	<%@include file="component/navbar.jsp"%>
+
 	<div class="container p-5">
 		<div class="row">
 			<div class="col-md-4 offset-md-4">
 				<div class="card point-card">
 					<div class="card-body">
 						<p class="fs-4 text-center">User Register</p>
-						<form action="register" method="post">
+
+						<!-- Display Success or Error Message using JSTL -->
+						<c:if test="${not empty sucMsg}">
+							<p class="text-success text-center">${sucMsg}</p>
+							<c:remove var="sucMsg" scope="session" />
+						</c:if>
+
+						<c:if test="${not empty errMsg}">
+							<p class="text-danger text-center">${errMsg}</p>
+							<c:remove var="errMsg" scope="session" />
+						</c:if>
+
+						<form action="${pageContext.request.contextPath}/register"
+							method="post">
 							<div class="mb-3">
 								<label class="form-label">Full Name</label> <input required
 									name="fullname" type="text" class="form-control">
@@ -35,7 +51,6 @@
 							</div>
 							<button type="submit" class="btn bg-success text-white col-md-12">Register</button>
 						</form>
-
 					</div>
 				</div>
 			</div>

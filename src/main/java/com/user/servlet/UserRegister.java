@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.entity.User;
 import com.db.DBConnect;
@@ -14,27 +15,35 @@ import com.dao.UserDao;
 
 @WebServlet("/register")
 public class UserRegister extends HttpServlet {
-    private static final long serialVersionUID = 1L; // Recommended for serialization
+	private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            String fullName = req.getParameter("fullname");
-            String email = req.getParameter("email");
-            String password = req.getParameter("password");
+	// Handle GET requests (for direct access to /register)
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/signup.jsp").forward(req, resp);
+	}
 
-            User u = new User(fullName, email, password);
-            UserDao dao = new UserDao(DBConnect.getConn());
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			String fullName = req.getParameter("fullname");
+			String email = req.getParameter("email");
+			String password = req.getParameter("password");
 
-            boolean f = dao.register(u);
+			User u = new User(fullName, email, password);
+			UserDao dao = new UserDao(DBConnect.getConn());
+			HttpSession session = req.getSession();
+			boolean f = dao.register(u);
 
-            if (f) {
-                System.out.println("Successful");
-            } else {
-                System.out.println("Errors in the server");
-            }
+			if (f) {
+				session.setAttribute("sucMsg", "Register successful");
+			} else {
+				session.setAttribute("errMsg", "Internal Server Error");
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+			// Redirect to signup.jsp (since it's in webapp)
+			resp.sendRedirect(req.getContextPath() + "/signup.jsp");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
