@@ -22,9 +22,9 @@
 					<div class="card-body">
 						<p class="fs-4 text-center">Admin Login</p>
 						<!-- Display Success or Error Message using JSTL -->
-						<c:if test="${not empty sucMsg}">
-							<p class="text-success text-center">${sucMsg}</p>
-							<c:remove var="sucMsg" scope="session" />
+						<c:if test="${not empty succMsg}">
+							<p class="text-success text-center">${succMsg}</p>
+							<c:remove var="succMsg" scope="session" />
 						</c:if>
 
 						<c:if test="${not empty errMsg}">
