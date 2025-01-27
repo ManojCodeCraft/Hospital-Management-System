@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +20,19 @@
 			<div class="col-md-4 offset-md-4">
 				<div class="card point-card">
 					<div class="card-body">
+
 						<p class="fs-4 text-center">User Login</p>
-						<form action="doctorLogin" method="post">
+						<!-- Display Success or Error Message using JSTL -->
+						<c:if test="${not empty succMsg}">
+							<p class="text-success text-center">${succMsg}</p>
+							<c:remove var="succMsg" scope="session" />
+						</c:if>
+
+						<c:if test="${not empty errorMsg}">
+							<p class="text-danger text-center">${errorMsg}</p>
+							<c:remove var="errorMsg" scope="session" />
+						</c:if>
+						<form action="userLogin" method="post">
 							<div class="mb-3">
 								<label class="form-label">Email address</label> <input required
 									name="email" type="email" class="form-control">
@@ -32,7 +43,8 @@
 							</div>
 							<button type="submit" class="btn bg-success text-white col-md-12">Login</button>
 						</form>
-						<br> Don't have an account?<a href="signup.jsp" class="text-decoration-none"> create one</a>
+						<br> Don't have an account?<a href="signup.jsp"
+							class="text-decoration-none"> create one</a>
 					</div>
 				</div>
 			</div>

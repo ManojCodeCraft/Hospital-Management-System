@@ -15,6 +15,8 @@
 					href="index.jsp">HOME</a></li>
 				<li class="nav-item"><a class="nav-link active"
 					href="doctor.jsp">DOCTOR</a></li>
+					<li class="nav-item"><a class="nav-link active"
+					href="view_doctor.jsp">VIEW DOCTOR</a></li>
 				<li class="nav-item"><a class="nav-link active"
 					href="patient.jsp">PATIENT</a></li>
 

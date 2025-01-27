@@ -1,7 +1,6 @@
 package com.user.servlet;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,29 +11,34 @@ import javax.servlet.http.HttpSession;
 import com.dao.UserDao;
 import com.db.DBConnect;
 import com.entity.User;
+
 @WebServlet("/userLogin")
 public class userLogin extends HttpServlet {
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
-		try {
-			String email = req.getParameter("email");
-			String password = req.getParameter("password");
-			HttpSession session = req.getSession();
-			UserDao dao=new UserDao(DBConnect.getConn());
-			User user=dao.login(email, password);
-			if (user!=null) {
-				session.setAttribute("userObj", new User());
-				resp.sendRedirect("index.jsp");
-			} else {
-				session.setAttribute("errMsg", "Invalid Email & Password");
-				resp.sendRedirect("user_login.jsp");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            String email = req.getParameter("email");
+            String password = req.getParameter("password");
 
+            HttpSession session = req.getSession();
+            UserDao dao = new UserDao(DBConnect.getConn());
+            User user = dao.login(email, password);
+
+            if (user != null) {
+                session.setAttribute("userObj", user); // Set the actual logged-in user
+                resp.sendRedirect("index.jsp");
+            } else {
+                session.setAttribute("errorMsg", "Invalid Email & Password");
+                resp.sendRedirect("user_login.jsp");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect("user_login.jsp"); // Redirecting to login page if accessed via GET
+    }
 }
