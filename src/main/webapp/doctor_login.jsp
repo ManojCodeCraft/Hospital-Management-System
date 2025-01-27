@@ -20,6 +20,16 @@
 				<div class="card point-card">
 					<div class="card-body">
 						<p class="fs-4 text-center">Doctor Login</p>
+						<!-- Display Success or Error Message using JSTL -->
+						<c:if test="${not empty succMsg}">
+							<p class="text-success text-center">${succMsg}</p>
+							<c:remove var="succMsg" scope="session" />
+						</c:if>
+
+						<c:if test="${not empty errorMsg}">
+							<p class="text-danger text-center">${errorMsg}</p>
+							<c:remove var="errorMsg" scope="session" />
+						</c:if>
 						<form action="doctorLogin" method="post">
 							<div class="mb-3">
 								<label class="form-label">Email address</label> <input required

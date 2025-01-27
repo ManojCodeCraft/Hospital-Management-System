@@ -23,7 +23,9 @@
 
 		<c:if test="${not empty succMsg}">
 			<div class="fs-3 text-center text-success" role="alert">${succMsg}</div>
-			<c:remove var="succMsg" scope="session" />
+			<%
+			session.removeAttribute("succMsg");
+			%>
 		</c:if>
 
 		<c:if test="${not empty errorMsg}">

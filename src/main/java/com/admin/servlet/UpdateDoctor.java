@@ -37,7 +37,6 @@ public class UpdateDoctor extends HttpServlet{
 			} else {
 				session.setAttribute("errorMsg", "Something went wrong on the server");
 				resp.sendRedirect("admin/view_doctor.jsp");
-				session.removeAttribute("errorMsg");
 			}
 
 		} catch (Exception e) {

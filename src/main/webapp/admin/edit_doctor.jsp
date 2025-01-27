@@ -34,7 +34,9 @@
 
 						<c:if test="${not empty succMsg}">
 							<div class="fs-3 text-center text-success" role="alert">${succMsg}</div>
-							<c:remove var="succMsg" scope="session" />
+							<%
+							session.removeAttribute("succMsg");
+							%>
 						</c:if>
 						<%
 						int id = Integer.parseInt(request.getParameter("id"));
@@ -44,22 +46,25 @@
 						<form action="../updateDoctor" method="post">
 							<div class="mb-3">
 								<label class="form-label">Full Name</label> <input type="text"
-									required name="fullname" class="form-control" value="<%=d.getFullName()%>">
+									required name="fullname" class="form-control"
+									value="<%=d.getFullName()%>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">DOB</label> <input type="date"
-									required name="dob" class="form-control" value="<%=d.getDob()%>">
+									required name="dob" class="form-control"
+									value="<%=d.getDob()%>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Qualification</label> <input required
-									name="qualification" type="text" class="form-control" value="<%=d.getQualification()%>">
+									name="qualification" type="text" class="form-control"
+									value="<%=d.getQualification()%>">
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Specialist</label> <select name="spec"
 									required class="form-control">
-									<option><%=d.getSpecialist() %></option>
+									<option><%=d.getSpecialist()%></option>
 
 									<%
 									SpecialistDao dao = new SpecialistDao(DBConnect.getConn());
@@ -77,17 +82,20 @@
 
 							<div class="mb-3">
 								<label class="form-label">Email</label> <input type="text"
-									required name="email" class="form-control" value="<%=d.getEmail()%>">
+									required name="email" class="form-control"
+									value="<%=d.getEmail()%>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Mob No</label> <input type="text"
-									required name="mobno" class="form-control" value="<%=d.getMobNo()%>">
+									required name="mobno" class="form-control"
+									value="<%=d.getMobNo()%>">
 							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Password</label> <input required
-									name="password" type="password" class="form-control" value="<%=d.getPassword()%>">
+									name="password" type="password" class="form-control"
+									value="<%=d.getPassword()%>">
 							</div>
 							<input type="hidden" name="id" value="<%=d.getId()%>">
 							<button type="submit" class="btn btn-primary center col-md-12">Update</button>

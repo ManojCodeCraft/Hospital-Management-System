@@ -37,11 +37,7 @@ public class AddDoctor extends HttpServlet {
 			} else {
 				session.setAttribute("errorMsg", "Something went wrong on the server");
 				resp.sendRedirect("admin/doctor.jsp");
-				session.removeAttribute("errorMsg");
 			}
-
-			// Redirect to the doctor page after setting the message
-			resp.sendRedirect("admin/doctor.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
