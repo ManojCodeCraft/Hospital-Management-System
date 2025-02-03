@@ -1,3 +1,5 @@
+<%@page import="com.db.DBConnect"%>
+<%@page import="com.dao.DoctorDao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -32,14 +34,16 @@
 			<p class="fs-3 text-center text-danger">${errorMsg}</p>
 			<c:remove var="errorMsg" scope="session" />
 		</c:if>
-
+		<%
+		DoctorDao dao = new DoctorDao(DBConnect.getConn());
+		%>
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card paint-card">
 					<div class="card-body text-center text-success">
 						<i class="fas fa-user-md fa-3x"></i><br>
 						<p class="fs-4 text-center">
-							Doctor <br>100
+							Doctor <br><%=dao.countDoctor()%>
 						</p>
 					</div>
 				</div>
@@ -50,7 +54,7 @@
 					<div class="card-body text-center text-success">
 						<i class="fas fa-user-circle fa-3x"></i><br>
 						<p class="fs-4 text-center">
-							User <br>23
+							User <br><%=dao.countUser()%>
 						</p>
 					</div>
 				</div>
@@ -61,7 +65,7 @@
 					<div class="card-body text-center text-success">
 						<i class="far fa-calendar-check fa-3x"></i><br>
 						<p class="fs-4 text-center">
-							Total Appointment <br>50
+							Total Appointment <br><%=dao.countAppointment()%>
 						</p>
 					</div>
 				</div>
@@ -73,7 +77,7 @@
 					<div class="card-body text-center text-success">
 						<i class="far fa-calendar-check fa-3x"></i><br>
 						<p class="fs-4 text-center">
-							Specialist <br>40
+							Specialist <br><%=dao.countSpecialist()%>
 						</p>
 					</div>
 				</div>
