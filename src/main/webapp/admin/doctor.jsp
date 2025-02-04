@@ -64,7 +64,7 @@
 									List<Specialist> list = dao.getAllSpecialist();
 									for (Specialist s : list) {
 									%>
-									<option><%=s.getSpecialistNameString()%></option>
+									<option><%=s.getSpecialistName()%></option>
 									<%
 									}
 									%>

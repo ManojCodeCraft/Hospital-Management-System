@@ -45,7 +45,7 @@ public class SpecialistDao {
 			while(rs.next()) {
 				s=new Specialist();
 				s.setId(rs.getInt(1));
-				s.setSpecialistNameString(rs.getString(2));
+				s.setSpecialistName(rs.getString(2));
 				list.add(s);
 				
 			}
