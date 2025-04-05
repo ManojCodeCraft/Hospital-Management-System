@@ -30,7 +30,7 @@ Java Development Kit (JDK) installed on your system.​
 
 Apache Maven for build automation.​
 
-An Integrated Development Environment (IDE) such as Eclipse or IntelliJ IDEA.​
+An Integrated Development Environment (IDE) such as Eclipse​
 
 Installation
 Clone this repository:​
