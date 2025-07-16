@@ -100,7 +100,7 @@ Hospital-Management-System/
 
 ## 🧑‍💻 Author
 
-**Manoj Kumar Aulakagari**
+**Manoj Kumar**
 - 🔗 [LinkedIn](https://www.linkedin.com/in/manoj-kumar-a-21ab69258/)
 - 💻 [GitHub](https://github.com/ManojCodeCraft)
 
